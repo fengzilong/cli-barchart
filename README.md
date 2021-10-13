@@ -2,9 +2,9 @@
 
 Fancy and customizable bar chart in your terminal
 
-![](media/blue.jpg)
+<img src="media/blue.jpg" alt="screenshot-of-blue-bar" width="500" />
 
-![](media/green.jpg)
+<img src="media/green.jpg" alt="screenshot-of-green-bar" width="500" />
 
 # Installation
 
