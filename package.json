@@ -1,6 +1,6 @@
 {
   "name": "cli-barchart",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "fancy bar chart in your terminal",
   "module": "./dist/index.mjs",
   "main": "./dist/index.js",
