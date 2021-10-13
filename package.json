@@ -2,9 +2,9 @@
   "name": "cli-barchart",
   "version": "0.1.0",
   "description": "fancy bar chart in your terminal",
-  "type": "module",
-  "exports": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
   "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -12,7 +12,7 @@
     "dev": "tsup src/index.ts --format esm,cjs --dts --sourcemap inline --watch src --onSuccess 'npm run test'",
     "build": "tsup src/index.ts --format esm,cjs --dts --sourcemap inline",
     "test": "echo 🌈",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "rm -rf dist && npm run build"
   },
   "repository": {
     "type": "git",
@@ -26,11 +26,11 @@
   },
   "homepage": "https://github.com/fengzilong/bar-chart#readme",
   "devDependencies": {
-    "@types/is-even": "^1.0.0",
     "tsup": "^5.4.0",
     "typescript": "^4.4.3"
   },
   "dependencies": {
+    "@types/is-even": "^1.0.0",
     "chalk": "^4.1.2",
     "is-even": "^1.0.0",
     "string-width": "^4.2.3",

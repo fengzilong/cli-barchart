@@ -25,8 +25,8 @@
 
 "@types/is-even@^1.0.0":
   version "1.0.0"
-  resolved "https://registry.nlark.com/@types/is-even/download/@types/is-even-1.0.0.tgz#37d74a80bf5cc4a8eac81961b5efd43df7450a66"
-  integrity sha1-N9dKgL9cxKjqyBlhte/UPfdFCmY=
+  resolved "https://registry.npmjs.org/@types/is-even/-/is-even-1.0.0.tgz#37d74a80bf5cc4a8eac81961b5efd43df7450a66"
+  integrity sha512-TMfo5j24wiKIP0MzLWTJZao3xN3TxUtx8LFy2sEsxvtc2jb2fSMpPZKzMjCoYJ380m23F6Fr6E+u+0Za24V53g==
 
 ansi-regex@^5.0.1:
   version "5.0.1"

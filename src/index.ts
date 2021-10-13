@@ -8,14 +8,20 @@ interface IDataItem {
   value: number
 }
 
+interface IOptions {
+  maxWidth?: number
+  colorize?: (item: IDataItem, index: number, data: IDataItem[]) => (arg: string) => string
+  renderLabel?: ( item: IDataItem, index: number, data: IDataItem[] ) => string
+}
+
 const BLOCK_CHAR = '▋'
 const { columns: TERM_COLUMNS } = termSize()
-const HALF_COLUMNS = isEven( TERM_COLUMNS ) ?
-  TERM_COLUMNS / 2 :
-  ( TERM_COLUMNS - 1 ) / 2
 
+function makeBarChart( data: IDataItem[], options: IOptions = {} ) {
+  let { maxWidth } = options
 
-function makeBarChart( data: IDataItem[] ) {
+  maxWidth = toEven( maxWidth || ( TERM_COLUMNS / 3 ) )
+
   const keys: string[] = data.map( v => v.key )
   const values: number[] = data.map( v => v.value )
 
@@ -26,22 +32,44 @@ function makeBarChart( data: IDataItem[] ) {
     return memo
   }, 0 )
 
-  
-
   let array: string[] = []
-  for ( let { key, value } of data ) {
+  for ( let i = 0, len = data.length; i < len; i++ ) {
+    const item = data[ i ]
+    const { key, value } = item
     const percentage = value / sum
-    const barColumns = HALF_COLUMNS * percentage
+    const barColumns: number = Math.round( maxWidth * percentage )
+    const restColumns = maxWidth - barColumns
     const keyLength = stringWidth( key )
+    
+    const colorize = options.colorize ? options.colorize( item, i, data ) : chalk.blue
+    const label = options.renderLabel ?
+      options.renderLabel( item, i, data ) :
+      chalk.gray( ( percentage * 100 ).toFixed( 1 ) + '%' )
+
     array.push(
-      ' '.repeat( longestLength ).slice( keyLength ) + key +
-      ' ' +
-      chalk.blue( BLOCK_CHAR.repeat( Math.round( barColumns ) ) ) +
-      ' ' + chalk.gray( ( percentage * 100 ).toFixed( 1 ) + '%' )
+      ' '.repeat( longestLength ).slice( keyLength ) + key + ' ' +
+      renderBar( BLOCK_CHAR, barColumns, restColumns, colorize ) +
+      ' ' + label
     )
   }
 
   return array.join( '\n\n' )
+}
+
+function renderBar(
+  blockChar: string,
+  barLength: number,
+  restLength: number,
+  colorize: ( params: string ) => string
+): string {
+  return colorize( blockChar.repeat( barLength ) ) +
+    ( chalk.supportsColor ? chalk.gray( blockChar.repeat( restLength ) ) : '' )
+}
+
+function toEven( n: number ): number {
+  n = Math.round( Math.abs( n ) )
+
+  return isEven( n ) ? n : n - 1
 }
 
 export default makeBarChart
