@@ -6,8 +6,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist",
-    "media"
+    "dist"
   ],
   "scripts": {
     "dev": "tsup src/index.ts --format esm,cjs --dts --sourcemap inline --watch src --onSuccess 'npm run test'",
