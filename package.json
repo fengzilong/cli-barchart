@@ -16,15 +16,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fengzilong/bar-chart.git"
+    "url": "git+https://github.com/fengzilong/cli-barchart.git"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/fengzilong/bar-chart/issues"
+    "url": "https://github.com/fengzilong/cli-barchart/issues"
   },
-  "homepage": "https://github.com/fengzilong/bar-chart#readme",
+  "homepage": "https://github.com/fengzilong/cli-barchart#readme",
   "devDependencies": {
     "tsup": "^5.4.0",
     "typescript": "^4.4.3"
